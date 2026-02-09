@@ -47,7 +47,7 @@ int main(int argc, char *argv[]) {
     sigaction(SIGALRM, &sa, NULL);   // koniec kursu
     sigaction(SIGRTMIN, &sa, NULL);  //podjedź pod rampę
     sigaction(SIGCONT, &sa, NULL);   // wznowienie po SIGSTOP
-    signal(SIGINT, SIG_IGN);         // ignoruj Ctrl+C (zamykanie przez SIGUSR2)
+    signal(SIGINT, SIG_IGN);         // ignoruj ctrl+c
 
     char src[16];
     snprintf(src, sizeof(src), "TRUCK%d", g_truck_index);
@@ -63,7 +63,7 @@ int main(int argc, char *argv[]) {
     sigdelset(&wait_mask, SIGALRM);
     sigdelset(&wait_mask, SIGCONT);
 
-    // Poinformuj dyspozytora: jestem wolna
+    // Poinformuj dyspozytora
     msg_t msg;
     msg.mtype = MSG_TRUCK_RETURNED;
     msg.sender_pid = getpid();
@@ -79,10 +79,10 @@ int main(int argc, char *argv[]) {
             sigsuspend(&wait_mask);
         if (g_shutdown) break;
 
-        // Zajmij rampę (mutex – tylko 1 ciężarówka naraz)
+        // Zajmij rampę
         if (sem_p_intr(SEM_RAMP_MUTEX) == -1) {
             if (g_shutdown) break;
-            continue;  // przerwany innym sygnałem
+            continue;
         }
         if (g_shutdown) { sem_v(SEM_RAMP_MUTEX); break; }
 
@@ -127,24 +127,22 @@ int main(int argc, char *argv[]) {
                     sem_v(SEM_TRUCK_MUTEX);
                     log_msg(src, "Brak miejsca na ekspres - pomijam");
                 }
-                /* Potwierdź P4 */
                 sem_v(SEM_EXPRESS_DONE);
                 continue;
             }
 
 //            if (more_coming > 0) {
-//                /* P4 jeszcze generuje następny ekspres - poczekaj chwilę */
 //                usleep(1000);  // 1ms
 //                continue;
 //            }
 
-            // 2) Sygnał 1: dyspozytor kazał odjechać z niepełnym
+            // Sygnał 1: dyspozytor kazał odjechać z niepełnym
             if (g_force_leave) {
                 log_msg(src, "Dyspozytor nakazal odjazd z niepelnym");
                 break;
             }
 
-            /* 3) Sprawdź czy następna paczka się zmieści */
+            // Sprawdź czy następna paczka się zmieści
             sem_p(SEM_TRUCK_MUTEX);
             float cw = my->current_weight;
             float cv = my->current_volume;
@@ -170,7 +168,6 @@ int main(int argc, char *argv[]) {
                 break;
             }
 
-            // 4) Pobierz paczkę z taśmy (blokująco)
             if (sem_p_nowait(SEM_BELT_ITEMS) != 0) {
                 if (g_shutdown || g_force_leave) {
                     if (g_force_leave) log_msg(src, "Dyspozytor nakazal odjazd z niepelnym");
@@ -190,12 +187,11 @@ int main(int argc, char *argv[]) {
                 }
             }
 
-            // Po przebudzeniu: może P4 zdążył wstawić ekspres
             sem_p(SEM_BELT_MUTEX);
             if (belt->express_waiting || belt->express_remaining > 0) {
                 sem_v(SEM_BELT_MUTEX);
-                sem_v(SEM_BELT_ITEMS);  // oddaj fałszywy element
-                continue;               // wróci na górę i obsłuży ekspres
+                sem_v(SEM_BELT_ITEMS);
+                continue;
             }
             if (belt->count == 0) {
                 sem_v(SEM_BELT_MUTEX);

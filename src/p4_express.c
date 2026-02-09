@@ -48,7 +48,7 @@ int main(int argc, char *argv[]) {
         int count = rand_int(EXPRESS_MIN_COUNT, EXPRESS_MAX_COUNT);
         log_msg("P4", "Pakiet ekspresowy (%d paczek)", count);
 
-        /* Powiadom ciężarówkę ile paczek będzie w pakiecie */
+        // Powiadom ciężarówkę ile paczek będzie w pakiecie
         sem_p(SEM_BELT_MUTEX);
         belt->express_remaining = count;
         sem_v(SEM_BELT_MUTEX);
@@ -58,16 +58,16 @@ int main(int argc, char *argv[]) {
             package_t pkg = generate_package(type);
             pkg.express = 1;
 
-            /* Wpisz paczke do pamieci dzielonej */
+            // Wpisz paczke do pamieci dzielonej
             sem_p(SEM_BELT_MUTEX);
             belt->express_pkg = pkg;
             belt->express_waiting = 1;
             sem_v(SEM_BELT_MUTEX);
 
-            /* Obudz ciezarowke (moze byc zablokowana na SEM_BELT_ITEMS) */
+            // Obudz ciezarowke
             sem_v(SEM_BELT_ITEMS);
 
-            /* Czekaj na potwierdzenie zaladunku */
+            // Czekaj na potwierdzenie zaladunku
             while (1) {
                 if (sem_p_intr(SEM_EXPRESS_DONE) == 0) break;
                 if (g_shutdown) break;
@@ -79,7 +79,7 @@ int main(int argc, char *argv[]) {
                     express_count, pkg_type_name(type), pkg.weight);
         }
 
-        /* Wyczyść remaining na wypadek przerwania */
+        //wyczyść remaining na wypadek przerwania
         sem_p(SEM_BELT_MUTEX);
         belt->express_remaining = 0;
         belt->express_waiting = 0;

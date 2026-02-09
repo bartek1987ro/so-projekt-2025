@@ -20,9 +20,9 @@ static int msgq_id = -1;
 static belt_t *belt = NULL;
 static truck_state_t *trucks = NULL;
 
-static volatile sig_atomic_t g_signal1 = 0;  /* SIGUSR1: ciężarówka odjeżdża */
-static volatile sig_atomic_t g_signal2 = 0;  /* SIGUSR2: P4 ekspres          */
-static volatile sig_atomic_t g_signal3 = 0;  /* SIGINT:  koniec pracy        */
+static volatile sig_atomic_t g_signal1 = 0;  // SIGUSR1: ciężarówka odjeżdża
+static volatile sig_atomic_t g_signal2 = 0;  // SIGUSR2: P4 ekspres
+static volatile sig_atomic_t g_signal3 = 0;  // SIGINT:  koniec pracy
 
 // Kolejka wolnych ciężarówek
 static int free_trucks[TRUCK_COUNT_N];
@@ -81,7 +81,7 @@ static int dequeue_free_truck(void) {
     return idx;
 }
 
-// Pomocnik: tworzenie shm (czyści stary jeśli istnieje)
+// tworzenie shm (czyści stary jeśli istnieje)
 static int create_shm(key_t key, size_t size) {
     int id = shmget(key, size, IPC_CREAT | IPC_EXCL | 0600);
     if (id < 0) {
@@ -264,14 +264,14 @@ int main(int argc, char *argv[]) {
             }
         }
 
-        // Sygnał 2 → P4 dostarcza ekspres
+        // Sygnał 2 - P4 dostarcza ekspres
         if (g_signal2) {
             g_signal2 = 0;
             kill(p4_pid, SIGUSR1);
             log_msg("DYSPOZYTOR", "Sygnal 2: P4 dostarcza ekspres");
         }
 
-        // Odbierz komunikaty z kolejki: ciężarówki wracające z kursu
+        // Odbierz komunikaty z kolejki
         msg_t msg;
         while (msgrcv(g_msgq_id, &msg, sizeof(msg) - sizeof(long),
                        MSG_TRUCK_RETURNED, IPC_NOWAIT) >= 0) {
@@ -342,7 +342,7 @@ int main(int argc, char *argv[]) {
     if (p4_pid > 0) waitpid(p4_pid, NULL, 0);
     log_msg("DYSPOZYTOR", "Pracownicy zakonczyli");
 
-    // --- Zamykanie ciężarówek ---
+    //Zamykanie ciężarówek
     // 1) SIGUSR2 wybudzi z sigsuspend (alarm/kurs)
     for (int i = 0; i < TRUCK_COUNT_N; i++)
         kill(truck_pids[i], SIGUSR2);

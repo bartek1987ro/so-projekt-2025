@@ -24,11 +24,9 @@ int main(int argc, char *argv[]) {
     srand(time(NULL) ^ getpid());
     load_ipc_ids();
 
-    // Podłącz pamięć dzieloną taśmy
     belt_t *belt = (belt_t *)shmat(g_shm_belt_id, NULL, 0);
     if (belt == (void *)-1) error_exit("WORKER", "shmat belt");
 
-    // Zainstaluj handler sygnału SIGUSR2
     struct sigaction sa;
     memset(&sa, 0, sizeof(sa));
     sa.sa_handler = sig_handler;
@@ -52,19 +50,17 @@ int main(int argc, char *argv[]) {
             break;
         }
 
-        // Generuj losową paczkę danego typu
         package_t pkg = generate_package(pkg_type);
 
-        // Czekaj na wolne miejsce na taśmie (semafor zliczający)
+        // Czekaj na wolne miejsce na taśmie
         if (sem_p_intr(SEM_BELT_SLOTS) == -1) {
             if (g_shutdown) break;
-            continue;  // przerwany sygnałem ale nie shutdown - ponów
+            continue;
         }
         if (g_shutdown) { sem_v(SEM_BELT_SLOTS); break; }
 
         int placed = 0;
         while (!placed && !g_shutdown) {
-            // Zamknij mutex na bufor taśmy
             sem_p(SEM_BELT_MUTEX);
 
             if (belt->shutdown) {
@@ -84,7 +80,7 @@ int main(int argc, char *argv[]) {
 
                 sem_v(SEM_BELT_MUTEX);
 
-                // Powiadom ciężarówkę: jest nowa paczka
+                // jest nowa paczka
                 sem_v(SEM_BELT_ITEMS);
 
                 log_msg(src, "Polozono paczke #%d typ %s, waga %.1f kg "
@@ -96,7 +92,7 @@ int main(int argc, char *argv[]) {
                 packages_created++;
                 //usleep(500000); //Test sygnalu
             } else {
-                // Waga nie pozwala – czekaj aż ciężarówka coś zabierze
+                //czekaj aż ciężarówka coś zabierze
                 sem_v(SEM_BELT_MUTEX);
                 if (sem_p_intr(SEM_WEIGHT_FREED) == -1) {
                     if (g_shutdown) break;

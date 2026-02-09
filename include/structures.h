@@ -22,7 +22,7 @@ typedef struct {
 } package_t;
 
 
-// Taśma transportowa (pamięć dzielona)
+// Taśma transportowa
 typedef struct {
     package_t   packages[BELT_CAPACITY_K];
     int         head;
@@ -31,14 +31,14 @@ typedef struct {
     float       current_weight;
     int         next_id;
     int         shutdown;
-    /* Wymiana paczek ekspresowych P4 <-> ciężarówka */
+    // Wymiana paczek ekspresowych P4 <-> ciężarówka
     package_t   express_pkg;       // paczka ekspresowa do załadunku
     int         express_waiting;   // 1 = paczka gotowa do załadunku
     int         express_remaining; // ile jeszcze paczek P4 chce dostarczyć
 } belt_t;
 
 
-//Stan ciężarówki (pamięć dzielona)
+//Stan ciężarówki
 #define TRUCK_FREE       0
 #define TRUCK_AT_RAMP    1
 #define TRUCK_ON_ROUTE   2
@@ -54,7 +54,7 @@ typedef struct {
 } truck_state_t;
 
 
-//Komunikat w kolejce komunikatów
+//Komunikat
 
 typedef struct {
     long    mtype;
