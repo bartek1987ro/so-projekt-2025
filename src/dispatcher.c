@@ -32,6 +32,7 @@ static int free_truck_count = 0;
 //Obsługa sygnałów dyspozytora
 
 static void dispatcher_sig_handler(int signum) {
+    sig_log(signum);
     if (signum == SIGUSR1)      g_signal1 = 1;
     else if (signum == SIGUSR2) g_signal2 = 1;
     else if (signum == SIGINT)  g_signal3 = 1;
@@ -240,6 +241,7 @@ int main(int argc, char *argv[]) {
         sigaction(SIGUSR1, &sa, NULL);
         sigaction(SIGUSR2, &sa, NULL);
         sigaction(SIGINT,  &sa, NULL);
+        sigaction(SIGCONT, &sa, NULL);
     }
 
 
@@ -330,42 +332,57 @@ int main(int argc, char *argv[]) {
         if (worker_pids[i] > 0) kill(worker_pids[i], SIGUSR2);
     if (p4_pid > 0) kill(p4_pid, SIGUSR2);
 
-    // Odblokuj semafory
+    // Odblokuj semafory pracowników
     for (int i = 0; i < 3; i++) { sem_v(SEM_BELT_SLOTS); sem_v(SEM_WEIGHT_FREED); }
-    sem_v(SEM_EXPRESS_READY); sem_v(SEM_EXPRESS_DONE); sem_v(SEM_BELT_ITEMS);
+    sem_v(SEM_EXPRESS_READY); sem_v(SEM_EXPRESS_DONE);
 
-    // Czekaj na zakończenie pracownikow
+    // Czekaj na zakończenie pracowników
     for (int i = 0; i < 3; i++)
         if (worker_pids[i] > 0) waitpid(worker_pids[i], NULL, 0);
     if (p4_pid > 0) waitpid(p4_pid, NULL, 0);
     log_msg("DYSPOZYTOR", "Pracownicy zakonczyli");
 
-    // Wymuś odjazd ciężarówek przy rampie
+    // --- Zamykanie ciężarówek ---
+    // 1) SIGUSR2 wybudzi z sigsuspend (alarm/kurs)
+    for (int i = 0; i < TRUCK_COUNT_N; i++)
+        kill(truck_pids[i], SIGUSR2);
+
+    // 2) SIGUSR1 wymusi odjazd z rampie (z niepełnym)
+    for (int i = 0; i < TRUCK_COUNT_N; i++)
+        kill(truck_pids[i], SIGUSR1);
+
+    // 3) SIGRTMIN wybudzi z czekania na rozkaz jazdy pod rampę
+    for (int i = 0; i < TRUCK_COUNT_N; i++)
+        kill(truck_pids[i], SIGRTMIN);
+
+    // 4) Odblokuj semafory na których ciężarówki mogą wisieć
     for (int i = 0; i < TRUCK_COUNT_N; i++) {
-        sem_p(SEM_TRUCK_MUTEX);
-        int st = trucks[i].status;
-        sem_v(SEM_TRUCK_MUTEX);
-        if (st == TRUCK_AT_RAMP) kill(truck_pids[i], SIGUSR1);
+        sem_v(SEM_BELT_ITEMS);   // czekanie na paczkę
+        sem_v(SEM_RAMP_MUTEX);   // czekanie na rampę
     }
 
-    // Czekaj aż ciężarówki wrócą z trasy
+    // 5) Czekaj na zakończenie ciężarówek (z timeoutem)
     for (int i = 0; i < TRUCK_COUNT_N; i++) {
-        sem_p(SEM_TRUCK_MUTEX);
-        int st = trucks[i].status;
-        sem_v(SEM_TRUCK_MUTEX);
-        while (st == TRUCK_ON_ROUTE) {
-            usleep(10000);
-            sem_p(SEM_TRUCK_MUTEX); st = trucks[i].status; sem_v(SEM_TRUCK_MUTEX);
+        int waited = 0;
+        while (waited < 50) {  // max 5 sekund
+            pid_t ret = waitpid(truck_pids[i], NULL, WNOHANG);
+            if (ret != 0) break;
+            usleep(100000);
+            waited++;
+            // powtórz sygnały gdyby nie dotarły
+            if (waited % 10 == 0) {
+                kill(truck_pids[i], SIGUSR2);
+                kill(truck_pids[i], SIGRTMIN);
+                sem_v(SEM_BELT_ITEMS);
+                sem_v(SEM_RAMP_MUTEX);
+            }
+        }
+        if (waited >= 50) {
+            log_msg("DYSPOZYTOR", "Ciezarowka %d nie odpowiada - SIGKILL", i);
+            kill(truck_pids[i], SIGKILL);
+            waitpid(truck_pids[i], NULL, 0);
         }
     }
-
-    // Zamknij ciężarówki
-    for (int i = 0; i < TRUCK_COUNT_N; i++) {
-        kill(truck_pids[i], SIGUSR2);
-        kill(truck_pids[i], SIGRTMIN);
-    }
-    for (int i = 0; i < TRUCK_COUNT_N; i++)
-        waitpid(truck_pids[i], NULL, 0);
 
     log_msg("DYSPOZYTOR", "Ciezarowki zakonczyli");
     generate_report(start_time);

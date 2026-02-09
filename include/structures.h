@@ -31,6 +31,10 @@ typedef struct {
     float       current_weight;
     int         next_id;
     int         shutdown;
+    /* Wymiana paczek ekspresowych P4 <-> ciężarówka */
+    package_t   express_pkg;       // paczka ekspresowa do załadunku
+    int         express_waiting;   // 1 = paczka gotowa do załadunku
+    int         express_remaining; // ile jeszcze paczek P4 chce dostarczyć
 } belt_t;
 
 

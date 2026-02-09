@@ -1,4 +1,3 @@
-
 // Pracownik P1/P2/P3 – układa przesyłki na taśmę
 // typ: 0=A, 1=B, 2=C
 
@@ -8,6 +7,7 @@
 static volatile sig_atomic_t g_shutdown = 0;
 
 static void sig_handler(int signum) {
+    sig_log(signum);
     if (signum == SIGUSR2) g_shutdown = 1;
 }
 
@@ -34,6 +34,8 @@ int main(int argc, char *argv[]) {
     sa.sa_handler = sig_handler;
     sa.sa_flags = 0;
     sigaction(SIGUSR2, &sa, NULL);
+    sigaction(SIGCONT, &sa, NULL);
+    signal(SIGINT, SIG_IGN);         // ignoruj Ctrl+C (zamykanie przez SIGUSR2)
 
     const char *type_name = pkg_type_name(pkg_type);
     char src[16];
@@ -54,7 +56,10 @@ int main(int argc, char *argv[]) {
         package_t pkg = generate_package(pkg_type);
 
         // Czekaj na wolne miejsce na taśmie (semafor zliczający)
-        sem_p(SEM_BELT_SLOTS);
+        if (sem_p_intr(SEM_BELT_SLOTS) == -1) {
+            if (g_shutdown) break;
+            continue;  // przerwany sygnałem ale nie shutdown - ponów
+        }
         if (g_shutdown) { sem_v(SEM_BELT_SLOTS); break; }
 
         int placed = 0;
@@ -89,10 +94,14 @@ int main(int argc, char *argv[]) {
                         belt->current_weight, BELT_MAX_WEIGHT_M);
 
                 packages_created++;
+                //usleep(500000); //Test sygnalu
             } else {
                 // Waga nie pozwala – czekaj aż ciężarówka coś zabierze
                 sem_v(SEM_BELT_MUTEX);
-                sem_p(SEM_WEIGHT_FREED);
+                if (sem_p_intr(SEM_WEIGHT_FREED) == -1) {
+                    if (g_shutdown) break;
+                    continue;
+                }
                 if (g_shutdown) break;
             }
         }

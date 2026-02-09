@@ -1,8 +1,7 @@
 #!/bin/bash
-# ============================================================
+
 #  Czyszczenie zasobów IPC po nieudanym uruchomieniu
-#  Użycie: ./clean.sh
-# ============================================================
+
 
 echo "Czyszczenie zasobow IPC..."
 

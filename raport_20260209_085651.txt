@@ -1,0 +1,205 @@
+[08:56:51][DYSPOZYTOR](PID 246400): IPC utworzone (sem=28, belt=56, trucks=57, msgq=28)
+[08:56:51][DYSPOZYTOR](PID 246400): Utworzono ciezarowke 0 (PID 246401)
+[08:56:51][DYSPOZYTOR](PID 246400): Utworzono ciezarowke 1 (PID 246402)
+[08:56:51][DYSPOZYTOR](PID 246400): Utworzono ciezarowke 2 (PID 246403)
+[08:56:51][DYSPOZYTOR](PID 246400): Utworzono pracownika P1 (PID 246404)
+[08:56:51][TRUCK0](PID 246401): Ciezarowka gotowa (ladownosc 150 kg, 1.00 m3)
+[08:56:51][DYSPOZYTOR](PID 246400): Utworzono pracownika P2 (PID 246405)
+[08:56:51][TRUCK1](PID 246402): Ciezarowka gotowa (ladownosc 150 kg, 1.00 m3)
+[08:56:51][DYSPOZYTOR](PID 246400): Utworzono pracownika P3 (PID 246406)
+[08:56:51][TRUCK2](PID 246403): Ciezarowka gotowa (ladownosc 150 kg, 1.00 m3)
+[08:56:51][P1](PID 246404): Pracownik rozpoczal prace (paczki typ A)
+[08:56:51][DYSPOZYTOR](PID 246400): Utworzono pracownika P4 (PID 246407)
+[08:56:51][P1](PID 246404): Polozono paczke #0 typ A, waga 4.4 kg [tasma: 1/10 szt, 4.4/120 kg]
+[08:56:51][DYSPOZYTOR](PID 246400): Rozpoczynam prace
+[08:56:51][P1](PID 246404): Polozono paczke #1 typ A, waga 4.6 kg [tasma: 2/10 szt, 9.0/120 kg]
+[08:56:51][DYSPOZYTOR](PID 246400): Ciezarowka 0 jest wolna
+[08:56:51][P1](PID 246404): Polozono paczke #2 typ A, waga 2.7 kg [tasma: 3/10 szt, 11.7/120 kg]
+[08:56:51][P2](PID 246405): Pracownik rozpoczal prace (paczki typ B)
+[08:56:51][DYSPOZYTOR](PID 246400): Ciezarowka 1 jest wolna
+[08:56:51][P1](PID 246404): Polozono paczke #3 typ A, waga 1.4 kg [tasma: 4/10 szt, 13.1/120 kg]
+[08:56:51][P2](PID 246405): Polozono paczke #4 typ B, waga 11.0 kg [tasma: 5/10 szt, 24.1/120 kg]
+[08:56:51][P3](PID 246406): Pracownik rozpoczal prace (paczki typ C)
+[08:56:51][DYSPOZYTOR](PID 246400): Ciezarowka 2 jest wolna
+[08:56:51][P1](PID 246404): Polozono paczke #5 typ A, waga 1.1 kg [tasma: 6/10 szt, 25.2/120 kg]
+[08:56:51][P2](PID 246405): Polozono paczke #6 typ B, waga 10.4 kg [tasma: 7/10 szt, 35.6/120 kg]
+[08:56:51][P3](PID 246406): Polozono paczke #7 typ C, waga 20.8 kg [tasma: 8/10 szt, 56.4/120 kg]
+[08:56:51][P4](PID 246407): Pracownik ekspresowy rozpoczal prace
+[08:56:51][DYSPOZYTOR](PID 246400): Wysylam ciezarowke 0 pod rampe
+[08:56:51][P1](PID 246404): Polozono paczke #8 typ A, waga 4.6 kg [tasma: 9/10 szt, 60.9/120 kg]
+[08:56:51][P2](PID 246405): Polozono paczke #9 typ B, waga 8.4 kg [tasma: 10/10 szt, 69.3/120 kg]
+[SIGNAL] PID 246401 otrzymal sygnal 34 (SIGRTMIN)
+[08:56:51][TRUCK0](PID 246401): Podjezdzam pod rampe
+[08:56:51][TRUCK0](PID 246401): Zaladowano paczke #0 typ A, waga 4.4 kg [ciezarowka: 4.4/150 kg, 0.019/1.00 m3, 1 szt]
+[08:56:51][P3](PID 246406): Polozono paczke #10 typ C, waga 18.5 kg [tasma: 10/10 szt, 83.3/120 kg]
+[08:56:51][TRUCK0](PID 246401): Zaladowano paczke #1 typ A, waga 4.6 kg [ciezarowka: 9.0/150 kg, 0.039/1.00 m3, 2 szt]
+[08:56:51][P1](PID 246404): Polozono paczke #11 typ A, waga 1.6 kg [tasma: 10/10 szt, 80.4/120 kg]
+[08:56:51][TRUCK0](PID 246401): Zaladowano paczke #2 typ A, waga 2.7 kg [ciezarowka: 11.7/150 kg, 0.058/1.00 m3, 3 szt]
+[08:56:51][P2](PID 246405): Polozono paczke #12 typ B, waga 5.5 kg [tasma: 10/10 szt, 83.2/120 kg]
+[08:56:51][TRUCK0](PID 246401): Zaladowano paczke #3 typ A, waga 1.4 kg [ciezarowka: 13.1/150 kg, 0.078/1.00 m3, 4 szt]
+[08:56:51][P3](PID 246406): Polozono paczke #13 typ C, waga 18.1 kg [tasma: 10/10 szt, 99.9/120 kg]
+[08:56:51][TRUCK0](PID 246401): Zaladowano paczke #4 typ B, waga 11.0 kg [ciezarowka: 24.1/150 kg, 0.124/1.00 m3, 5 szt]
+[08:56:51][P1](PID 246404): Polozono paczke #14 typ A, waga 6.1 kg [tasma: 10/10 szt, 95.0/120 kg]
+[08:56:51][TRUCK0](PID 246401): Zaladowano paczke #5 typ A, waga 1.1 kg [ciezarowka: 25.2/150 kg, 0.143/1.00 m3, 6 szt]
+[08:56:51][P2](PID 246405): Polozono paczke #15 typ B, waga 3.1 kg [tasma: 10/10 szt, 97.0/120 kg]
+[08:56:51][TRUCK0](PID 246401): Zaladowano paczke #6 typ B, waga 10.4 kg [ciezarowka: 35.6/150 kg, 0.190/1.00 m3, 7 szt]
+[08:56:51][P3](PID 246406): Polozono paczke #16 typ C, waga 0.8 kg [tasma: 10/10 szt, 87.4/120 kg]
+[08:56:51][TRUCK0](PID 246401): Zaladowano paczke #7 typ C, waga 20.8 kg [ciezarowka: 56.4/150 kg, 0.289/1.00 m3, 8 szt]
+[08:56:51][P1](PID 246404): Polozono paczke #17 typ A, waga 7.3 kg [tasma: 10/10 szt, 73.9/120 kg]
+[08:56:51][TRUCK0](PID 246401): Zaladowano paczke #8 typ A, waga 4.6 kg [ciezarowka: 60.9/150 kg, 0.309/1.00 m3, 9 szt]
+[08:56:51][P2](PID 246405): Polozono paczke #18 typ B, waga 13.4 kg [tasma: 10/10 szt, 82.7/120 kg]
+[08:56:51][TRUCK0](PID 246401): Zaladowano paczke #9 typ B, waga 8.4 kg [ciezarowka: 69.3/150 kg, 0.355/1.00 m3, 10 szt]
+[08:56:51][P3](PID 246406): Polozono paczke #19 typ C, waga 6.6 kg [tasma: 10/10 szt, 80.9/120 kg]
+[08:56:51][TRUCK0](PID 246401): Zaladowano paczke #10 typ C, waga 18.5 kg [ciezarowka: 87.8/150 kg, 0.455/1.00 m3, 11 szt]
+[08:56:51][P1](PID 246404): Polozono paczke #20 typ A, waga 4.5 kg [tasma: 10/10 szt, 67.0/120 kg]
+[08:56:51][TRUCK0](PID 246401): Zaladowano paczke #11 typ A, waga 1.6 kg [ciezarowka: 89.4/150 kg, 0.474/1.00 m3, 12 szt]
+[08:56:51][P2](PID 246405): Polozono paczke #21 typ B, waga 5.3 kg [tasma: 10/10 szt, 70.6/120 kg]
+[08:56:51][TRUCK0](PID 246401): Zaladowano paczke #12 typ B, waga 5.5 kg [ciezarowka: 94.9/150 kg, 0.520/1.00 m3, 13 szt]
+[08:56:51][P3](PID 246406): Polozono paczke #22 typ C, waga 15.6 kg [tasma: 10/10 szt, 80.7/120 kg]
+[08:56:51][TRUCK0](PID 246401): Zaladowano paczke #13 typ C, waga 18.1 kg [ciezarowka: 113.0/150 kg, 0.620/1.00 m3, 14 szt]
+[08:56:51][P1](PID 246404): Polozono paczke #23 typ A, waga 4.3 kg [tasma: 10/10 szt, 66.9/120 kg]
+[08:56:51][DYSPOZYTOR](PID 246400): Wysylam ciezarowke 1 pod rampe
+[08:56:51][TRUCK0](PID 246401): Zaladowano paczke #14 typ A, waga 6.1 kg [ciezarowka: 119.1/150 kg, 0.640/1.00 m3, 15 szt]
+[08:56:51][P2](PID 246405): Polozono paczke #24 typ B, waga 7.4 kg [tasma: 10/10 szt, 68.2/120 kg]
+[SIGNAL] PID 246402 otrzymal sygnal 34 (SIGRTMIN)
+[08:56:51][TRUCK0](PID 246401): Zaladowano paczke #15 typ B, waga 3.1 kg [ciezarowka: 122.2/150 kg, 0.686/1.00 m3, 16 szt]
+[08:56:51][P3](PID 246406): Polozono paczke #25 typ C, waga 11.8 kg [tasma: 10/10 szt, 76.9/120 kg]
+[08:56:51][TRUCK0](PID 246401): Zaladowano paczke #16 typ C, waga 0.8 kg [ciezarowka: 123.0/150 kg, 0.786/1.00 m3, 17 szt]
+[08:56:51][P1](PID 246404): Polozono paczke #26 typ A, waga 5.0 kg [tasma: 10/10 szt, 81.2/120 kg]
+[08:56:51][TRUCK0](PID 246401): Zaladowano paczke #17 typ A, waga 7.3 kg [ciezarowka: 130.2/150 kg, 0.805/1.00 m3, 18 szt]
+[08:56:51][P2](PID 246405): Polozono paczke #27 typ B, waga 9.5 kg [tasma: 10/10 szt, 83.4/120 kg]
+[08:56:51][TRUCK0](PID 246401): Zaladowano paczke #18 typ B, waga 13.4 kg [ciezarowka: 143.6/150 kg, 0.851/1.00 m3, 19 szt]
+[08:56:51][P3](PID 246406): Polozono paczke #28 typ C, waga 4.3 kg [tasma: 10/10 szt, 74.3/120 kg]
+[08:56:51][TRUCK0](PID 246401): Ciezarowka pelna (nastepna paczka sie nie miesci)
+[08:56:51][TRUCK0](PID 246401): Odjazd: 19 paczek, 143.6 kg, 0.851 m3 (kurs #1)
+[08:56:51][TRUCK1](PID 246402): Podjezdzam pod rampe
+[08:56:51][TRUCK0](PID 246401): W trasie na 1 sekund
+[08:56:51][TRUCK1](PID 246402): Zaladowano paczke #19 typ C, waga 6.6 kg [ciezarowka: 6.6/150 kg, 0.100/1.00 m3, 1 szt]
+[08:56:51][P1](PID 246404): Polozono paczke #29 typ A, waga 0.9 kg [tasma: 10/10 szt, 68.7/120 kg]
+[08:56:51][TRUCK1](PID 246402): Zaladowano paczke #20 typ A, waga 4.5 kg [ciezarowka: 11.1/150 kg, 0.119/1.00 m3, 2 szt]
+[08:56:51][P2](PID 246405): Polozono paczke #30 typ B, waga 15.5 kg [tasma: 10/10 szt, 79.6/120 kg]
+[08:56:51][TRUCK1](PID 246402): Zaladowano paczke #21 typ B, waga 5.3 kg [ciezarowka: 16.4/150 kg, 0.165/1.00 m3, 3 szt]
+[08:56:51][P3](PID 246406): Polozono paczke #31 typ C, waga 7.4 kg [tasma: 10/10 szt, 81.8/120 kg]
+[08:56:51][TRUCK1](PID 246402): Zaladowano paczke #22 typ C, waga 15.6 kg [ciezarowka: 32.0/150 kg, 0.265/1.00 m3, 4 szt]
+[08:56:51][P1](PID 246404): Polozono paczke #32 typ A, waga 0.5 kg [tasma: 10/10 szt, 66.6/120 kg]
+[08:56:51][TRUCK1](PID 246402): Zaladowano paczke #23 typ A, waga 4.3 kg [ciezarowka: 36.3/150 kg, 0.285/1.00 m3, 5 szt]
+[08:56:51][P2](PID 246405): Polozono paczke #33 typ B, waga 0.4 kg [tasma: 10/10 szt, 62.7/120 kg]
+[08:56:51][TRUCK1](PID 246402): Zaladowano paczke #24 typ B, waga 7.4 kg [ciezarowka: 43.7/150 kg, 0.331/1.00 m3, 6 szt]
+[08:56:51][P3](PID 246406): Polozono paczke #34 typ C, waga 22.3 kg [tasma: 10/10 szt, 77.6/120 kg]
+[08:56:51][TRUCK1](PID 246402): Zaladowano paczke #25 typ C, waga 11.8 kg [ciezarowka: 55.5/150 kg, 0.430/1.00 m3, 7 szt]
+[08:56:51][P1](PID 246404): Polozono paczke #35 typ A, waga 1.5 kg [tasma: 10/10 szt, 67.2/120 kg]
+[08:56:51][TRUCK1](PID 246402): Zaladowano paczke #26 typ A, waga 5.0 kg [ciezarowka: 60.5/150 kg, 0.450/1.00 m3, 8 szt]
+[08:56:51][P2](PID 246405): Polozono paczke #36 typ B, waga 7.2 kg [tasma: 10/10 szt, 69.4/120 kg]
+[08:56:51][TRUCK1](PID 246402): Zaladowano paczke #27 typ B, waga 9.5 kg [ciezarowka: 70.0/150 kg, 0.496/1.00 m3, 9 szt]
+[08:56:51][P3](PID 246406): Polozono paczke #37 typ C, waga 0.4 kg [tasma: 10/10 szt, 60.4/120 kg]
+[08:56:51][DYSPOZYTOR](PID 246400): Wysylam ciezarowke 2 pod rampe
+[08:56:51][TRUCK1](PID 246402): Zaladowano paczke #28 typ C, waga 4.3 kg [ciezarowka: 74.3/150 kg, 0.596/1.00 m3, 10 szt]
+[SIGNAL] PID 246403 otrzymal sygnal 34 (SIGRTMIN)
+[08:56:51][P1](PID 246404): Polozono paczke #38 typ A, waga 2.7 kg [tasma: 10/10 szt, 58.8/120 kg]
+[08:56:51][TRUCK1](PID 246402): Zaladowano paczke #29 typ A, waga 0.9 kg [ciezarowka: 75.2/150 kg, 0.615/1.00 m3, 11 szt]
+[08:56:51][P2](PID 246405): Polozono paczke #39 typ B, waga 3.2 kg [tasma: 10/10 szt, 61.0/120 kg]
+[08:56:51][TRUCK1](PID 246402): Zaladowano paczke #30 typ B, waga 15.5 kg [ciezarowka: 90.7/150 kg, 0.662/1.00 m3, 12 szt]
+[08:56:51][P1](PID 246404): Polozono paczke #40 typ A, waga 6.8 kg [tasma: 10/10 szt, 52.4/120 kg]
+[08:56:51][TRUCK1](PID 246402): Zaladowano paczke #31 typ C, waga 7.4 kg [ciezarowka: 98.1/150 kg, 0.761/1.00 m3, 13 szt]
+[08:56:51][P3](PID 246406): Polozono paczke #41 typ C, waga 19.8 kg [tasma: 10/10 szt, 64.8/120 kg]
+[08:56:51][TRUCK1](PID 246402): Zaladowano paczke #32 typ A, waga 0.5 kg [ciezarowka: 98.6/150 kg, 0.781/1.00 m3, 14 szt]
+[08:56:51][P2](PID 246405): Polozono paczke #42 typ B, waga 15.8 kg [tasma: 10/10 szt, 80.1/120 kg]
+[08:56:51][TRUCK1](PID 246402): Zaladowano paczke #33 typ B, waga 0.4 kg [ciezarowka: 99.0/150 kg, 0.827/1.00 m3, 15 szt]
+[08:56:51][P1](PID 246404): Polozono paczke #43 typ A, waga 4.7 kg [tasma: 10/10 szt, 84.4/120 kg]
+[08:56:51][TRUCK1](PID 246402): Zaladowano paczke #34 typ C, waga 22.3 kg [ciezarowka: 121.2/150 kg, 0.927/1.00 m3, 16 szt]
+[08:56:51][P3](PID 246406): Polozono paczke #44 typ C, waga 7.7 kg [tasma: 10/10 szt, 69.8/120 kg]
+[08:56:51][TRUCK1](PID 246402): Zaladowano paczke #35 typ A, waga 1.5 kg [ciezarowka: 122.7/150 kg, 0.946/1.00 m3, 17 szt]
+[08:56:51][P2](PID 246405): Polozono paczke #45 typ B, waga 10.8 kg [tasma: 10/10 szt, 79.1/120 kg]
+[08:56:51][TRUCK1](PID 246402): Zaladowano paczke #36 typ B, waga 7.2 kg [ciezarowka: 129.9/150 kg, 0.992/1.00 m3, 18 szt]
+[08:56:51][P1](PID 246404): Polozono paczke #46 typ A, waga 0.3 kg [tasma: 10/10 szt, 72.3/120 kg]
+[08:56:51][TRUCK1](PID 246402): Ciezarowka pelna (nastepna paczka sie nie miesci)
+[08:56:51][TRUCK1](PID 246402): Odjazd: 18 paczek, 129.9 kg, 0.992 m3 (kurs #1)
+[08:56:51][TRUCK2](PID 246403): Podjezdzam pod rampe
+[08:56:51][TRUCK1](PID 246402): W trasie na 3 sekund
+[08:56:51][TRUCK2](PID 246403): Zaladowano paczke #37 typ C, waga 0.4 kg [ciezarowka: 0.4/150 kg, 0.100/1.00 m3, 1 szt]
+[08:56:51][P3](PID 246406): Polozono paczke #47 typ C, waga 23.6 kg [tasma: 10/10 szt, 95.5/120 kg]
+[08:56:51][TRUCK2](PID 246403): Zaladowano paczke #38 typ A, waga 2.7 kg [ciezarowka: 3.2/150 kg, 0.119/1.00 m3, 2 szt]
+[08:56:51][P2](PID 246405): Polozono paczke #48 typ B, waga 13.8 kg [tasma: 10/10 szt, 106.5/120 kg]
+[08:56:51][TRUCK2](PID 246403): Zaladowano paczke #39 typ B, waga 3.2 kg [ciezarowka: 6.3/150 kg, 0.165/1.00 m3, 3 szt]
+[08:56:51][P1](PID 246404): Polozono paczke #49 typ A, waga 1.6 kg [tasma: 10/10 szt, 104.9/120 kg]
+[08:56:51][P1](PID 246404): Osiagnieto limit 20 paczek, koncze
+[08:56:51][TRUCK2](PID 246403): Zaladowano paczke #40 typ A, waga 6.8 kg [ciezarowka: 13.2/150 kg, 0.185/1.00 m3, 4 szt]
+[08:56:51][P3](PID 246406): Polozono paczke #50 typ C, waga 17.4 kg [tasma: 10/10 szt, 115.4/120 kg]
+[08:56:51][P1](PID 246404): Pracownik konczy prace (utworzono 20 paczek)
+[08:56:51][TRUCK2](PID 246403): Zaladowano paczke #41 typ C, waga 19.8 kg [ciezarowka: 33.0/150 kg, 0.285/1.00 m3, 5 szt]
+[08:56:51][P2](PID 246405): Polozono paczke #51 typ B, waga 2.6 kg [tasma: 10/10 szt, 98.2/120 kg]
+[08:56:51][TRUCK2](PID 246403): Zaladowano paczke #42 typ B, waga 15.8 kg [ciezarowka: 48.8/150 kg, 0.331/1.00 m3, 6 szt]
+[08:56:51][P3](PID 246406): Polozono paczke #52 typ C, waga 22.8 kg [tasma: 10/10 szt, 105.2/120 kg]
+[08:56:51][TRUCK2](PID 246403): Zaladowano paczke #43 typ A, waga 4.7 kg [ciezarowka: 53.5/150 kg, 0.350/1.00 m3, 7 szt]
+[08:56:51][P2](PID 246405): Polozono paczke #53 typ B, waga 12.8 kg [tasma: 10/10 szt, 113.3/120 kg]
+[08:56:51][TRUCK2](PID 246403): Zaladowano paczke #44 typ C, waga 7.7 kg [ciezarowka: 61.1/150 kg, 0.450/1.00 m3, 8 szt]
+[08:56:51][P3](PID 246406): Polozono paczke #54 typ C, waga 24.7 kg [tasma: 9/10 szt, 119.6/120 kg]
+[08:56:51][TRUCK2](PID 246403): Zaladowano paczke #45 typ B, waga 10.8 kg [ciezarowka: 71.9/150 kg, 0.496/1.00 m3, 9 szt]
+[08:56:51][TRUCK2](PID 246403): Zaladowano paczke #46 typ A, waga 0.3 kg [ciezarowka: 72.3/150 kg, 0.516/1.00 m3, 10 szt]
+[08:56:51][TRUCK2](PID 246403): Zaladowano paczke #47 typ C, waga 23.6 kg [ciezarowka: 95.9/150 kg, 0.615/1.00 m3, 11 szt]
+[08:56:51][P3](PID 246406): Polozono paczke #55 typ C, waga 13.7 kg [tasma: 8/10 szt, 109.3/120 kg]
+[08:56:51][TRUCK2](PID 246403): Zaladowano paczke #48 typ B, waga 13.8 kg [ciezarowka: 109.7/150 kg, 0.662/1.00 m3, 12 szt]
+[08:56:51][P2](PID 246405): Polozono paczke #56 typ B, waga 5.2 kg [tasma: 8/10 szt, 100.7/120 kg]
+[08:56:51][P3](PID 246406): Polozono paczke #57 typ C, waga 16.1 kg [tasma: 9/10 szt, 116.8/120 kg]
+[08:56:51][TRUCK2](PID 246403): Zaladowano paczke #49 typ A, waga 1.6 kg [ciezarowka: 111.2/150 kg, 0.681/1.00 m3, 13 szt]
+[08:56:51][P2](PID 246405): Polozono paczke #58 typ B, waga 0.3 kg [tasma: 9/10 szt, 115.5/120 kg]
+[08:56:51][P2](PID 246405): Osiagnieto limit 20 paczek, koncze
+[08:56:51][TRUCK2](PID 246403): Zaladowano paczke #50 typ C, waga 17.4 kg [ciezarowka: 128.6/150 kg, 0.781/1.00 m3, 14 szt]
+[08:56:51][P3](PID 246406): Polozono paczke #59 typ C, waga 21.5 kg [tasma: 9/10 szt, 119.7/120 kg]
+[08:56:51][P2](PID 246405): Pracownik konczy prace (utworzono 20 paczek)
+[08:56:51][TRUCK2](PID 246403): Zaladowano paczke #51 typ B, waga 2.6 kg [ciezarowka: 131.2/150 kg, 0.827/1.00 m3, 15 szt]
+[08:56:51][P3](PID 246406): Osiagnieto limit 20 paczek, koncze
+[08:56:51][DYSPOZYTOR](PID 246400): Pracownik P1 (PID 246404) zakonczyl
+[08:56:51][TRUCK2](PID 246403): Ciezarowka pelna (nastepna paczka sie nie miesci)
+[08:56:51][P3](PID 246406): Pracownik konczy prace (utworzono 20 paczek)
+[08:56:51][DYSPOZYTOR](PID 246400): Pracownik P2 (PID 246405) zakonczyl
+[08:56:51][TRUCK2](PID 246403): Odjazd: 15 paczek, 131.2 kg, 0.827 m3 (kurs #1)
+[08:56:51][TRUCK2](PID 246403): W trasie na 5 sekund
+[08:56:51][DYSPOZYTOR](PID 246400): Pracownik P3 (PID 246406) zakonczyl
+[08:56:51][DYSPOZYTOR](PID 246400): Wszyscy pracownicy P1-P3 zakonczyli
+[SIGNAL] PID 246401 otrzymal sygnal 14 (SIGALRM)
+[08:56:52][TRUCK0](PID 246401): Wrocil z kursu #1
+[08:56:52][DYSPOZYTOR](PID 246400): Ciezarowka 0 jest wolna
+[08:56:52][DYSPOZYTOR](PID 246400): Wysylam ciezarowke 0 pod rampe
+[SIGNAL] PID 246401 otrzymal sygnal 34 (SIGRTMIN)
+[08:56:52][TRUCK0](PID 246401): Podjezdzam pod rampe
+[08:56:52][TRUCK0](PID 246401): Zaladowano paczke #52 typ C, waga 22.8 kg [ciezarowka: 22.8/150 kg, 0.100/1.00 m3, 1 szt]
+[08:56:52][TRUCK0](PID 246401): Zaladowano paczke #53 typ B, waga 12.8 kg [ciezarowka: 35.6/150 kg, 0.146/1.00 m3, 2 szt]
+[08:56:52][TRUCK0](PID 246401): Zaladowano paczke #54 typ C, waga 24.7 kg [ciezarowka: 60.3/150 kg, 0.246/1.00 m3, 3 szt]
+[08:56:52][TRUCK0](PID 246401): Zaladowano paczke #55 typ C, waga 13.7 kg [ciezarowka: 74.0/150 kg, 0.345/1.00 m3, 4 szt]
+[08:56:52][TRUCK0](PID 246401): Zaladowano paczke #56 typ B, waga 5.2 kg [ciezarowka: 79.2/150 kg, 0.392/1.00 m3, 5 szt]
+[08:56:52][TRUCK0](PID 246401): Zaladowano paczke #57 typ C, waga 16.1 kg [ciezarowka: 95.3/150 kg, 0.491/1.00 m3, 6 szt]
+[08:56:52][TRUCK0](PID 246401): Zaladowano paczke #58 typ B, waga 0.3 kg [ciezarowka: 95.5/150 kg, 0.537/1.00 m3, 7 szt]
+[08:56:52][TRUCK0](PID 246401): Zaladowano paczke #59 typ C, waga 21.5 kg [ciezarowka: 117.1/150 kg, 0.637/1.00 m3, 8 szt]
+[08:56:52][DYSPOZYTOR](PID 246400): Tasma pusta – inicjuje zamkniecie
+[08:56:52][DYSPOZYTOR](PID 246400): === ZAMYKANIE ===
+[SIGNAL] PID 246407 otrzymal sygnal 12 (SIGUSR2)
+[08:56:52][P4](PID 246407): P4 konczy prace (dostarczono 0 ekspresow)
+[08:56:52][DYSPOZYTOR](PID 246400): Pracownicy zakonczyli
+[SIGNAL] PID 246402 otrzymal sygnal 12 (SIGUSR2)
+[SIGNAL] PID 246402 otrzymal sygnal 34 (SIGRTMIN)
+[SIGNAL] PID 246401 otrzymal sygnal 34 (SIGRTMIN)
+[SIGNAL] PID 246403 otrzymal sygnal 12 (SIGUSR2)
+[SIGNAL] PID 246401 otrzymal sygnal 10 (SIGUSR1)
+[SIGNAL] PID 246401 otrzymal sygnal 12 (SIGUSR2)
+[SIGNAL] PID 246402 otrzymal sygnal 10 (SIGUSR1)
+[SIGNAL] PID 246403 otrzymal sygnal 34 (SIGRTMIN)
+[08:56:52][TRUCK0](PID 246401): Dyspozytor nakazal odjazd z niepelnym
+[SIGNAL] PID 246403 otrzymal sygnal 10 (SIGUSR1)
+[08:56:52][TRUCK1](PID 246402): Wrocil z kursu #1
+[08:56:52][TRUCK0](PID 246401): Odjazd: 8 paczek, 117.1 kg, 0.637 m3 (kurs #2)
+[08:56:52][TRUCK2](PID 246403): Wrocil z kursu #1
+[08:56:52][TRUCK1](PID 246402): Ciezarowka konczy prace (kursow: 1, paczek: 18)
+[08:56:52][TRUCK0](PID 246401): W trasie na 2 sekund
+[08:56:52][TRUCK2](PID 246403): Ciezarowka konczy prace (kursow: 1, paczek: 15)
+[08:56:52][TRUCK0](PID 246401): Wrocil z kursu #2
+[08:56:52][TRUCK0](PID 246401): Ciezarowka konczy prace (kursow: 2, paczek: 27)
+[08:56:52][DYSPOZYTOR](PID 246400): Ciezarowki zakonczyli
+[08:56:52][DYSPOZYTOR](PID 246400): === RAPORT KONCOWY ===
+[08:56:52][DYSPOZYTOR](PID 246400): Czas trwania: 1 sekund
+[08:56:52][DYSPOZYTOR](PID 246400): --- Ciezarowki ---
+[08:56:52][DYSPOZYTOR](PID 246400):   Ciezarowka 0 (PID 246401): kursow=2, paczek=27
+[08:56:52][DYSPOZYTOR](PID 246400):   Ciezarowka 1 (PID 246402): kursow=1, paczek=18
+[08:56:52][DYSPOZYTOR](PID 246400):   Ciezarowka 2 (PID 246403): kursow=1, paczek=15
+[08:56:52][DYSPOZYTOR](PID 246400): Paczek przetworzonych lacznie: ~60
+[08:56:52][DYSPOZYTOR](PID 246400): === KONIEC RAPORTU ===

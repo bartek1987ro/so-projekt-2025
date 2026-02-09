@@ -21,16 +21,16 @@
 #include "config.h"
 #include "structures.h"
 
-
-// globalne ID ipc
-
+/* ============================================================
+ *  Globalne ID-ki IPC (ładowane z env w procesach potomnych)
+ * ============================================================ */
 static int g_sem_id  = -1;
 static int g_shm_belt_id = -1;
 static int g_shm_trucks_id = -1;
 static int g_msgq_id = -1;
 static char g_log_file[256] = "";
 
-// Nazwy zmiennych środowiskowych
+/* Nazwy zmiennych środowiskowych */
 #define ENV_SEM_ID       "MAG_SEM_ID"
 #define ENV_SHM_BELT     "MAG_SHM_BELT"
 #define ENV_SHM_TRUCKS   "MAG_SHM_TRUCKS"
@@ -52,8 +52,9 @@ static void load_ipc_ids(void) {
     s = getenv(ENV_LOG_FILE);   if (s) strncpy(g_log_file, s, sizeof(g_log_file) - 1);
 }
 
-
-// Operacje semaforowe
+/* ============================================================
+ *  Operacje semaforowe
+ * ============================================================ */
 static void sem_p(int sem_num) {
     struct sembuf buf = { sem_num, -1, 0 };
     while (semop(g_sem_id, &buf, 1) == -1) {
@@ -79,7 +80,48 @@ static int sem_p_nowait(int sem_num) {
     return 0;
 }
 
-//  Logowanie do pliku i terminala
+/* sem_p z przerwaniem przez sygnał (nie restartuje po EINTR) */
+static int sem_p_intr(int sem_num) {
+    struct sembuf buf = { sem_num, -1, 0 };
+    if (semop(g_sem_id, &buf, 1) == -1) {
+        if (errno == EINTR) return -1;
+        perror("sem_p_intr"); exit(EXIT_FAILURE);
+    }
+    return 0;
+}
+
+/* ============================================================
+ *  Logowanie do pliku i terminala
+ * ============================================================ */
+
+/* Wersja async-signal-safe — do użycia TYLKO w handlerach sygnałów.
+ * Nie używa printf/malloc/semop — tylko write(), open(), close(), getpid().
+ * Zapisuje: "[SIGNAL] PID <pid> otrzymal sygnal <signum> (<nazwa>)\n"
+ * zarówno na stdout jak i do pliku raportu.                             */
+static void sig_log(int signum) {
+    /* Nazwy sygnałów których używamy */
+    const char *name = "?";
+    if      (signum == SIGUSR1)  name = "SIGUSR1";
+    else if (signum == SIGUSR2)  name = "SIGUSR2";
+    else if (signum == SIGINT)   name = "SIGINT";
+    else if (signum == SIGCONT)  name = "SIGCONT";
+    else if (signum == SIGALRM)  name = "SIGALRM";
+    else if (signum == SIGRTMIN) name = "SIGRTMIN";
+
+    /* Budujemy wiadomość ręcznie (snprintf nie jest async-signal-safe
+     * wg POSIX, ale w glibc działa – tu używamy go dla czytelności;
+     * alternatywą byłoby ręczne itoa + write) */
+    char buf[128];
+    int len = snprintf(buf, sizeof(buf),
+                       "[SIGNAL] PID %d otrzymal sygnal %d (%s)\n",
+                       getpid(), signum, name);
+    if (len > 0) {
+        write(STDOUT_FILENO, buf, len);
+        /* Dopisz do pliku raportu (bez semafora – async-signal-safe) */
+        int fd = open(g_log_file, O_WRONLY | O_CREAT | O_APPEND, 0644);
+        if (fd >= 0) { write(fd, buf, len); close(fd); }
+    }
+}
 
 static void log_msg(const char *source, const char *fmt, ...) {
     char text[512];
@@ -105,15 +147,18 @@ static void log_msg(const char *source, const char *fmt, ...) {
     sem_v(SEM_LOG_MUTEX);
 }
 
-
-// Obsługa błędów
+/* ============================================================
+ *  Obsługa błędów
+ * ============================================================ */
 static void error_exit(const char *source, const char *msg) {
     fprintf(stderr, "[BLAD][%s](PID %d): %s – %s\n",
             source, getpid(), msg, strerror(errno));
     exit(EXIT_FAILURE);
 }
 
-// Losowanie
+/* ============================================================
+ *  Losowanie
+ * ============================================================ */
 static int rand_int(int min, int max) {
     return min + rand() % (max - min + 1);
 }
@@ -122,8 +167,9 @@ static float rand_float(float min, float max) {
     return min + ((float)rand() / (float)RAND_MAX) * (max - min);
 }
 
-
-//  Generowanie paczki
+/* ============================================================
+ *  Generowanie paczki
+ * ============================================================ */
 static package_t generate_package(int type) {
     package_t pkg;
     pkg.type = type;

@@ -11,8 +11,8 @@
 #define TRUCK_COUNT_N       3       // Liczba ciezarowek
 #define TRUCK_LOAD_W        150.0   // Ladownsc [kg]
 #define TRUCK_VOLUME_V      1.0     // Objetość ładunkowa [m3]
-#define TRUCK_MIN_COURSE    3       // Min. czas kursu [s]
-#define TRUCK_MAX_COURSE    10      // Maks. czas kursu [s]
+#define TRUCK_MIN_COURSE    1       // Min. czas kursu [s]
+#define TRUCK_MAX_COURSE    5      // Maks. czas kursu [s]
 
 // Gabaryt A: 64×38×8
 #define VOLUME_A            0.019456
